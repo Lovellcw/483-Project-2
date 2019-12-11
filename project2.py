@@ -78,10 +78,28 @@ def pythThrm(a, b):
 
 mat = scipy.io.loadmat('kmeansdata.mat')
 print("Using data:\n")
+
+#Initial Plot
+plt.plot(mat['X'],'bo')
+
+#plt.legend.set_label('Initial Distribution')
+plt.show()
+
+#colors = list("rgbcmyk")
+
+#for i in mat.values():
+#	x = i.keys()
+#	y = i.values()
+#	plt.scatter(x,y,colors=colors.pop())
+
+#plt.legend(mat.keys())
+#plt.show()
 #mat = sorted(mat.items())
 #x, y = zip(*mat)
 #plt.scatter(mat['X'])
 #plt.show()
 print(mat['X'])
+
+#print(len(mat))
 
 kmeans(3, mat['X'])
