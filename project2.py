@@ -37,13 +37,9 @@ def findKmeans(centroids, data, counter):
     for i in dist:
         b = 0
         c = 0
-        print("Data distances: ")
-        print(i)
         for j in dist[r]:
-            print(j)
             if(pythThrm(j[0],j[1]) < pythThrm(dist[r][b][0],dist[r][b][1])):
                 b = c
-                print("Bucket: " + str(b) + "\ndata point: " + str(r) + " distance = " + str(pythThrm(j[0],j[1])))
             c += 1
         buckets[b].append(data[r])
         r +=1
@@ -54,12 +50,12 @@ def findKmeans(centroids, data, counter):
             avgy = 0
             for elem in row:
                 avgx = avgx + elem[0]
-                avgy = avgy + elem[0]
+                avgy = avgy + elem[1]
             avgx = avgx/len(row)
             avgy = avgy/len(row)
             newCentroid.append([avgx,avgy])
         else:
-            newCentroid.append(centroids[0])
+            newCentroid.append([4,4])
         c += 1
     print("\nNew Centroids: " + str(counter))
     print (newCentroid)
