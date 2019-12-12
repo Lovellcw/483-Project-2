@@ -8,8 +8,6 @@ def kmeans(k, data):
     counter = 0
     solution = []
     solution = findKmeans(centroids, data, counter)
-    print("\nSolution: ")
-    print(solution)
     return solution
 
 def initCentroids(k):
@@ -61,12 +59,26 @@ def findKmeans(centroids, data, counter):
         c += 1
     print("\nNew Centroids: " + str(counter))
     print (newCentroid)
-    if counter != 10:
+    if counter < 10:
         counter += 1
         findKmeans(newCentroid, data, counter)
-    print("\nFinal New Centroids: ")
-    print (newCentroid)
-    return newCentroid
+    else:
+        print("\nFinal New Centroids: ")
+        print (newCentroid)
+        print("\nFirst Bucket: ")
+        print(buckets[0])
+        plt.plot(buckets[0],'bo')
+        print("\Second Bucket: ")
+        print(buckets[1])
+        plt.plot(buckets[1],'go')
+        print("\Third Bucket: ")
+        print(buckets[2])
+        plt.plot(buckets[2],'mo')
+        plt.plot(newCentroid,'rx')
+        print("\nPlot:")
+        plt.show()
+        return newCentroid
+
 
 def pythThrm(a, b):
     return math.sqrt(math.pow(a,2) + math.pow(b,2))
@@ -74,20 +86,13 @@ def pythThrm(a, b):
 
 mat = scipy.io.loadmat('kmeansdata.mat')
 print("Using data:")
-print(mat['X'])
+print(mat)
 
 #Initial Plot
 
-plt.plot(mat['X'],'bo')
-centroids = []
-centroids = kmeans(3, mat['X'])
+#plt.plot(mat['X'],'bo')
+kmeans(3, mat['X'])
 
-print("\nFinal Centroids:")
-print(centroids)
-plt.plot(centroids,'rx')
-
-print("\nPlot:")
-plt.show()
 
 
 
