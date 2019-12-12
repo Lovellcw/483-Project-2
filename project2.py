@@ -82,7 +82,9 @@ def findKmeans(centroids, data, counter):
 
         #print("\nFinal New Centroids: ")
         #print (newCentroid)
-        plt.plot(*zip(*newCentroid),'rx')
+        plt.plot((newCentroid[0][0]), (newCentroid[0][1]),'bx')
+        plt.plot((newCentroid[1][0]), (newCentroid[1][1]),'gx')
+        plt.plot((newCentroid[2][0]), (newCentroid[2][1]),'mx')
         #print("\nPlot:")
         plt.show()
         return newCentroid
