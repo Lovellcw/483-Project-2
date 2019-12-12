@@ -6,26 +6,21 @@ import scipy.io
 def kmeans(k, data):
     centroids = initCentroids(k)
     counter = 0
-    return findKmeans(centroids, data, counter)
+    solution = []
+    solution = findKmeans(centroids, data, counter)
+    print("\nSolution: ")
+    print(solution)
+    return solution
 
 def initCentroids(k):
     centroids = []
-
     centroids.append([3,3])
     centroids.append([6,2])
     centroids.append([8,5])
-#    x = 0
-#    y = 0
-#    for i in range(k):
-#        centroids.append([x,y])
-#        if(i%2==0):
-#           x += 1
-#        else:
-#           y += 1
     return centroids
 
 def findKmeans(centroids, data, counter):
-    print("TEST")
+    print("\nCentroids: " + str(counter))
     print(centroids)
     dist = []
     buckets = []
@@ -64,26 +59,41 @@ def findKmeans(centroids, data, counter):
         else:
             newCentroid.append(centroids[0])
         c += 1
-
+    print("\nNew Centroids: " + str(counter))
     print (newCentroid)
-    if(newCentroid == centroids):
-        return newCentroid
-    elif counter != 10:
-	counter += 1
+    if counter != 10:
+        counter += 1
         findKmeans(newCentroid, data, counter)
+    print("\nFinal New Centroids: ")
+    print (newCentroid)
+    return newCentroid
 
 def pythThrm(a, b):
     return math.sqrt(math.pow(a,2) + math.pow(b,2))
 
 
 mat = scipy.io.loadmat('kmeansdata.mat')
-print("Using data:\n")
+print("Using data:")
+print(mat['X'])
 
 #Initial Plot
+
 plt.plot(mat['X'],'bo')
+centroids = []
+centroids = kmeans(3, mat['X'])
+
+print("\nFinal Centroids:")
+print(centroids)
+plt.plot(centroids,'rx')
+
+print("\nPlot:")
+plt.show()
+
+
+
 
 #plt.legend.set_label('Initial Distribution')
-plt.show()
+
 
 #colors = list("rgbcmyk")
 
@@ -98,8 +108,8 @@ plt.show()
 #x, y = zip(*mat)
 #plt.scatter(mat['X'])
 #plt.show()
-print(mat['X'])
+
 
 #print(len(mat))
 
-kmeans(3, mat['X'])
+
