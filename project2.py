@@ -59,7 +59,7 @@ def findKmeans(centroids, data, counter):
         c += 1
     print("\nNew Centroids: " + str(counter))
     print (newCentroid)
-    if counter < 10:
+    if (newCentroid != centroids and counter < 20):
         counter += 1
         findKmeans(newCentroid, data, counter)
     else:
