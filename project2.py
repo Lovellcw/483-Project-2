@@ -34,14 +34,18 @@ def findKmeans(centroids, data, counter):
             dist[c].append([x,y])
         c += 1
     r = 0
-    for row in dist:
+    for i in dist:
         b = 0
         c = 0
-        for elem in row:
-            if(pythThrm(elem[0],elem[1]) < pythThrm(row[b][0],row[b][1])):
+        print("Data distances: ")
+        print(i)
+        for j in dist[r]:
+            print(j)
+            if(pythThrm(j[0],j[1]) < pythThrm(dist[r][b][0],dist[r][b][1])):
                 b = c
+                print("Bucket: " + str(b) + "\ndata point: " + str(r) + " distance = " + str(pythThrm(j[0],j[1])))
             c += 1
-        buckets[b].append(row[b])
+        buckets[b].append(data[r])
         r +=1
     c = 0
     for row in buckets:
@@ -63,19 +67,24 @@ def findKmeans(centroids, data, counter):
         counter += 1
         findKmeans(newCentroid, data, counter)
     else:
-        print("\nFinal New Centroids: ")
-        print (newCentroid)
-        print("\nFirst Bucket: ")
-        print(buckets[0])
-        plt.plot(buckets[0],'bo')
-        print("\Second Bucket: ")
-        print(buckets[1])
-        plt.plot(buckets[1],'go')
-        print("\Third Bucket: ")
-        print(buckets[2])
-        plt.plot(buckets[2],'mo')
-        plt.plot(newCentroid,'rx')
-        print("\nPlot:")
+        
+
+        #print("\nFirst Bucket: ")
+        #print(buckets[0])
+        plt.plot(*zip(*buckets[0]),'bo')
+
+        #print("\Second Bucket: ")
+        #print(buckets[1])
+        plt.plot(*zip(*buckets[1]),'go')
+
+        #print("\Third Bucket: ")
+        #print(buckets[2])
+        plt.plot(*zip(*buckets[2]),'mo')
+
+        #print("\nFinal New Centroids: ")
+        #print (newCentroid)
+        plt.plot(*zip(*newCentroid),'rx')
+        #print("\nPlot:")
         plt.show()
         return newCentroid
 
