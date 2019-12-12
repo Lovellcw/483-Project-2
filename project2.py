@@ -1,3 +1,6 @@
+#Lovell Willmore 890341399
+#Steven Alvarez 890191927
+
 import numpy as np
 import math
 import matplotlib.pyplot as plt
